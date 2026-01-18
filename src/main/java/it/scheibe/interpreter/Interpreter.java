@@ -10,7 +10,6 @@ import java.util.Map;
 import it.scheibe.interpreter.token.Token;
 
 public class Interpreter {
-	// TODO support empty lines and comments
 	// TODO support WHILE
 
 	public static void main(String[] args) throws Exception {

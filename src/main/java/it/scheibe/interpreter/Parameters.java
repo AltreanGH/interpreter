@@ -10,6 +10,12 @@ public class Parameters {
 	public static final boolean UPDATE_IN_LOOP = false;
 
 	/**
+	 * Wether comments should be allowed in source code. Comments are written in
+	 * Java syntax.
+	 */
+	public static final boolean ENABLE_COMMENTS = true;
+
+	/**
 	 * The value variables take on if they are not initialized yet.
 	 */
 	public static final int DEFAULT_VALUE = 0;

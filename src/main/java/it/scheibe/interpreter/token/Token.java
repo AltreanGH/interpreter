@@ -17,7 +17,7 @@ public interface Token {
 
 	default List<Token> tokenizeLevel(String input) {
 		List<Token> res = new ArrayList<>();
-		String[] lines = input.split(Tokenizer.LINE_SPLITTER);
+		String[] lines = input.split(Tokenizer.NEW_TOKEN_REGEX);
 		for (String line : lines) {
 			for (Token type : Tokenizer.TOKEN_TYPES) {
 				Matcher matcher = type.getPattern().matcher(line);

@@ -9,7 +9,9 @@ import it.scheibe.interpreter.token.Subtraction;
 import it.scheibe.interpreter.token.Token;
 
 public class Tokenizer {
-	public static final String LINE_SPLITTER = "\\n(?=[^\\n\\tEND])";
+	public static final String NEW_TOKEN_REGEX = "\\n(?=[^\\n\\tEND])";
+
+	public static final String COMMENT_REGEX = "(?s)//.*?(?=\\n)|/\\*.*?\\*/";
 
 	public static final Token[] TOKEN_TYPES = new Token[] {
 			new Loop(null, null),
@@ -18,6 +20,9 @@ public class Tokenizer {
 	};
 
 	public static List<Token> tokenize(String input) {
+		// Preprocess the program
+		if (Parameters.ENABLE_COMMENTS)
+			input = input.replaceAll(COMMENT_REGEX, "");
 		input = input.replaceAll(" ", "");
 		return new Loop(null, new ArrayList<>()).tokenizeLevel(input);
 	}
