@@ -11,7 +11,7 @@ import it.scheibe.interpreter.Tokenizer;
 
 public class InterpreterTest {
 	@Test
-	public void testMultiplication() {
+	public void testLoopMultiplication() {
 		String code = """
 				a := _ + 5
 				b := _ + 7
@@ -32,7 +32,7 @@ public class InterpreterTest {
 	}
 
 	@Test
-	public void testFactorial() {
+	public void testLoopFactorial() {
 		String code = """
 				a := y + 9
 				ausgabe := _ + 1
@@ -58,6 +58,40 @@ public class InterpreterTest {
 		Assert.assertEquals(expected, actual);
 	}
 
+	public void testWhileAssignment() {
+		String code = """
+				z := y+5
+				WHILE z!= 0 DO
+				\tx := x +1
+				\tz := z - 1
+				END
+				""";
+
+		Map<String, Integer> expected = Map.of(
+				"z", 0,
+				"x", 5);
+		Map<String, Integer> actual = new Program(Tokenizer.tokenize(code)).interpret(new HashMap<>());
+		Assert.assertEquals(expected, actual);
+	}
+
+	public void testWhileAndLoop() {
+		String code = """
+				z := y+10
+				WHILE z!= 0 DO
+				\tLOOP z DO
+				\t\tx := x+ 1
+				\tEND
+				\tz := z - 1
+				END
+				""";
+
+		Map<String, Integer> expected = Map.of(
+				"z", 0,
+				"x", 55);
+		Map<String, Integer> actual = new Program(Tokenizer.tokenize(code)).interpret(new HashMap<>());
+		Assert.assertEquals(expected, actual);
+	}
+
 	@Test
 	public void testEmptyLines() {
 		String code = """
@@ -75,7 +109,8 @@ public class InterpreterTest {
 				"a", 5,
 				"b", 7,
 				"ausgabe", 35);
-		Map<String, Integer> actual = new Program(Tokenizer.tokenize(code)).interpret(new HashMap<>());
+		var t = Tokenizer.tokenize(code);
+		Map<String, Integer> actual = new Program(t).interpret(new HashMap<>());
 		Assert.assertEquals(expected, actual);
 	}
 
