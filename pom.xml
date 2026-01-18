@@ -6,7 +6,7 @@
 
     <groupId>it.scheibe</groupId>
     <artifactId>interpreter</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
