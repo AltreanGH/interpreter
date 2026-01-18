@@ -9,7 +9,7 @@ import it.scheibe.interpreter.token.Subtraction;
 import it.scheibe.interpreter.token.Token;
 
 public class Tokenizer {
-	public static final String LINE_SPLITTER = "\\n(?=[^\\tEND])";
+	public static final String LINE_SPLITTER = "\\n(?=[^\\n\\tEND])";
 
 	public static final Token[] TOKEN_TYPES = new Token[] {
 			new Loop(null, null),
