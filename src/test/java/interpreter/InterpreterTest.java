@@ -1,4 +1,5 @@
 package interpreter;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +16,6 @@ public class InterpreterTest {
 				a := _ + 5
 				b := _ + 7
 				ausgabe := _ + 0
-
 				LOOP a DO
 				\tLOOP b DO
 				\t\tausgabe := ausgabe + 1
@@ -54,6 +54,58 @@ public class InterpreterTest {
 				"i", 9,
 				"ausgabe", 362880,
 				"tmp", 362880);
+		Map<String, Integer> actual = new Program(Tokenizer.tokenize(code)).interpret(new HashMap<>());
+		Assert.assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testEmptyLines() {
+		String code = """
+				\na := _ + 5\n
+				b := _ + 7\n\n\n
+				ausgabe := _ + 0
+				LOOP a DO
+				\tLOOP b DO\n
+				\t\tausgabe := ausgabe + 1\n
+				\tEND
+				END\n\n
+				""";
+
+		Map<String, Integer> expected = Map.of(
+				"a", 5,
+				"b", 7,
+				"ausgabe", 35);
+		Map<String, Integer> actual = new Program(Tokenizer.tokenize(code)).interpret(new HashMap<>());
+		Assert.assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testComments() {
+		String code = """
+				a := y + 5
+				ausgabe := _ + 1
+				LOOP a DO // test
+				\ti := i + 1
+				\t/*
+				\t * this is a comment tmp := _ - 4
+				\t */
+				\ttmp := _ + 0
+				\tLOOP ausgabe DO
+				\t\tLOOP i DO
+				\t\t\ttmp := tmp + 1
+				\t\t/* blub \n*/END
+				\t\t/* LOOP i DO
+				\t\t *\ttmp := tmp + 1
+				\t\t END */
+				\tEND
+				\tausgabe := tmp + 0
+				END
+				""";
+		Map<String, Integer> expected = Map.of(
+				"a", 5,
+				"i", 5,
+				"ausgabe", 120,
+				"tmp", 120);
 		Map<String, Integer> actual = new Program(Tokenizer.tokenize(code)).interpret(new HashMap<>());
 		Assert.assertEquals(expected, actual);
 	}
