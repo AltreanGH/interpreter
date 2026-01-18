@@ -9,7 +9,7 @@ import it.scheibe.interpreter.Parameters;
 
 public record Loop(String variable, List<Token> content) implements Token {
 	private static final Pattern PATTERN = Pattern
-			.compile("LOOP(?<n>.+?)DO\\n(?<content>.*?)\\nEND", Pattern.DOTALL);
+			.compile("LOOP(?<variable>.+?)DO\\n(?<content>.*?)\\nEND", Pattern.DOTALL);
 
 	@Override
 	public Pattern getPattern() {
@@ -18,7 +18,7 @@ public record Loop(String variable, List<Token> content) implements Token {
 
 	@Override
 	public Loop tokenize(Matcher result) {
-		String variable = result.group("n");
+		String variable = result.group("variable");
 		// Remove first-level indentation from content
 		String content = result.group("content").replaceAll("(?m)^\t", "");
 		return new Loop(variable, tokenizeLevel(content));
