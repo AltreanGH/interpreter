@@ -25,7 +25,7 @@ public record Addition(String variable, int constant, String output) implements 
 
 	@Override
 	public Map<String, Integer> interpret(Map<String, Integer> input) {
-		input.put(output, constant + input.getOrDefault(variable, Parameters.DEFAULT_VALUE));
+		input.put(output, input.getOrDefault(variable, Parameters.DEFAULT_VALUE) + constant);
 		return input;
 	}
 }
