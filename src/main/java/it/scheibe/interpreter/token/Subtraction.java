@@ -8,7 +8,7 @@ import it.scheibe.interpreter.Parameters;
 
 public record Subtraction(String variable, int constant, String output) implements Token {
 	private static final Pattern PATTERN = Pattern
-			.compile("(?<output>.+?):=(?<variable>.+?)-(?<constant>\\d+)");
+			.compile("^(?<output>.+?):=(?<variable>.+?)-(?<constant>\\d+)$");
 
 	@Override
 	public Pattern getPattern() {

@@ -10,8 +10,6 @@ import java.util.Map;
 import it.scheibe.interpreter.token.Token;
 
 public class Interpreter {
-	// TODO support WHILE
-
 	public static void main(String[] args) throws Exception {
 		if (args.length == 0)
 			throw new Exception("Please provide a path to a file!");

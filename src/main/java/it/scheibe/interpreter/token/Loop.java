@@ -9,7 +9,7 @@ import it.scheibe.interpreter.Parameters;
 
 public record Loop(String variable, List<Token> content) implements Token {
 	private static final Pattern PATTERN = Pattern
-			.compile("LOOP(?<variable>.+?)DO\\n(?<content>.*?)\\nEND", Pattern.DOTALL);
+			.compile("^LOOP(?<variable>.+?)DO\\n(?<content>.*?)\\nEND$", Pattern.DOTALL);
 
 	@Override
 	public Pattern getPattern() {

@@ -10,7 +10,7 @@ import it.scheibe.interpreter.Parameters;
 public record While(String variable, int constant, List<Token> content) implements Token {
 	// TODO only != is supported as of now
 	private static final Pattern PATTERN = Pattern
-			.compile("WHILE(?<variable>.+?)!=(?<constant>.+?)DO\\n(?<content>.*?)\\nEND", Pattern.DOTALL);
+			.compile("^WHILE(?<variable>.+?)!=(?<constant>\\d+?)DO\\n(?<content>.*?)\\nEND$", Pattern.DOTALL);
 
 	@Override
 	public Pattern getPattern() {
