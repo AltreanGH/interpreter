@@ -1,5 +1,10 @@
 package it.scheibe.interpreter;
 
+import it.scheibe.interpreter.token.Addition;
+import it.scheibe.interpreter.token.Loop;
+import it.scheibe.interpreter.token.Subtraction;
+import it.scheibe.interpreter.token.Token;
+
 public class Parameters {
 	/**
 	 * Let's say we have a LOOP with the variable <code>n</code>. If this param is
@@ -19,4 +24,14 @@ public class Parameters {
 	 * The value variables take on if they are not initialized yet.
 	 */
 	public static final int DEFAULT_VALUE = 0;
+
+	/**
+	 * Set enabled Token types. For example if you want to only interpret LOOP
+	 * programs enable {@code Loop}, {@code Addition} and {@code Subtraction}.
+	 */
+	public static final Token[] TOKEN_TYPES = new Token[] {
+			new Loop(null, null),
+			new Addition(null, 0, null),
+			new Subtraction(null, 0, null)
+	};
 }
