@@ -1,6 +1,5 @@
 # interpreter
-A simple Java and Regex based interpreter for LOOP
-The initial implementation of the LOOP interpreter.
+A simple Java and Regex based interpreter for LOOP and WHILE.
 ## Usage Examples
 - slightly different syntax from https://en.wikipedia.org/wiki/LOOP_(programming_language)
 - for references see https://github.com/knowsys/FormaleSysteme
