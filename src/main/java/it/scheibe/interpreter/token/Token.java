@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import it.scheibe.interpreter.Parameters;
 import it.scheibe.interpreter.Tokenizer;
 
 public interface Token {
@@ -19,7 +20,7 @@ public interface Token {
 		List<Token> res = new ArrayList<>();
 		String[] lines = input.split(Tokenizer.NEW_TOKEN_REGEX);
 		for (String line : lines) {
-			for (Token type : Tokenizer.TOKEN_TYPES) {
+			for (Token type : Parameters.TOKEN_TYPES) {
 				Matcher matcher = type.getPattern().matcher(line);
 				if (matcher.find()) {
 					res.add(type.tokenize(matcher));
