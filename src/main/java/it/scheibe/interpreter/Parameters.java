@@ -4,6 +4,7 @@ import it.scheibe.interpreter.token.Addition;
 import it.scheibe.interpreter.token.Loop;
 import it.scheibe.interpreter.token.Subtraction;
 import it.scheibe.interpreter.token.Token;
+import it.scheibe.interpreter.token.While;
 
 public class Parameters {
 	/**
@@ -31,7 +32,8 @@ public class Parameters {
 	 */
 	public static final Token[] TOKEN_TYPES = new Token[] {
 			new Loop(null, null),
-			new Addition(null, 0, null),
-			new Subtraction(null, 0, null)
+			new While(null, -1, null),
+			new Addition(null, -1, null),
+			new Subtraction(null, -1, null)
 	};
 }
