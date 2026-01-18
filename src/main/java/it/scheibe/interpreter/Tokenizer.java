@@ -13,9 +13,9 @@ public class Tokenizer {
 
 	public static List<Token> tokenize(String input) {
 		// Preprocess the program
+		input = input.replaceAll("(?m)^\\s*\\n| ", "");
 		if (Parameters.ENABLE_COMMENTS)
 			input = input.replaceAll(COMMENT_REGEX, "");
-		input = input.replaceAll(" ", "");
 		return new Loop(null, new ArrayList<>()).tokenizeLevel(input);
 	}
 }
