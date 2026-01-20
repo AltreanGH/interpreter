@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import it.scheibe.interpreter.Parameters;
+import it.scheibe.interpreter.InterpretationException.ParsingException;
 
 public record Loop(String variable, List<Token> content) implements Token {
 	private static final Pattern PATTERN = Pattern
@@ -17,7 +18,7 @@ public record Loop(String variable, List<Token> content) implements Token {
 	}
 
 	@Override
-	public Loop tokenize(Matcher result) {
+	public Loop tokenize(Matcher result) throws ParsingException {
 		String variable = result.group("variable");
 		// Remove first-level indentation from content
 		String content = result.group("content").replaceAll("(?m)^\t", "");

@@ -8,10 +8,11 @@ import org.junit.Test;
 
 import it.scheibe.interpreter.Program;
 import it.scheibe.interpreter.Tokenizer;
+import it.scheibe.interpreter.InterpretationException.ParsingException;
 
 public class InterpreterTest {
 	@Test
-	public void testLoopMultiplication() {
+	public void testLoopMultiplication() throws ParsingException {
 		String code = """
 				a := _ + 5
 				b := _ + 7
@@ -32,7 +33,7 @@ public class InterpreterTest {
 	}
 
 	@Test
-	public void testLoopFactorial() {
+	public void testLoopFactorial() throws ParsingException {
 		String code = """
 				a := y + 9
 				ausgabe := _ + 1
@@ -58,7 +59,7 @@ public class InterpreterTest {
 		Assert.assertEquals(expected, actual);
 	}
 
-	public void testWhileAssignment() {
+	public void testWhileAssignment() throws ParsingException {
 		String code = """
 				z := y+5
 				WHILE z!= 0 DO
@@ -74,7 +75,7 @@ public class InterpreterTest {
 		Assert.assertEquals(expected, actual);
 	}
 
-	public void testWhileAndLoop() {
+	public void testWhileAndLoop() throws ParsingException {
 		String code = """
 				z := y+10
 				WHILE z!= 0 DO
@@ -93,7 +94,7 @@ public class InterpreterTest {
 	}
 
 	@Test
-	public void testEmptyLines() {
+	public void testEmptyLines() throws ParsingException {
 		String code = """
 				\na := _ + 5\n
 				b := _ + 7\n\n\n
@@ -115,7 +116,7 @@ public class InterpreterTest {
 	}
 
 	@Test
-	public void testComments() {
+	public void testComments() throws ParsingException {
 		String code = """
 				a := y + 5
 				ausgabe := _ + 1

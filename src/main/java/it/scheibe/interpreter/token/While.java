@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import it.scheibe.interpreter.Parameters;
+import it.scheibe.interpreter.InterpretationException.ParsingException;
 
 public record While(String variable, int constant, List<Token> content) implements Token {
 	// TODO only != is supported as of now
@@ -18,7 +19,7 @@ public record While(String variable, int constant, List<Token> content) implemen
 	}
 
 	@Override
-	public While tokenize(Matcher result) {
+	public While tokenize(Matcher result) throws ParsingException {
 		String variable = result.group("variable");
 		int constant = Integer.parseInt(result.group("constant"));
 		// Remove first-level indentation from content
